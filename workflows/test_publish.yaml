@@ -1,0 +1,19 @@
+!!ExportedWorkflow
+apiVersion: torq.io/v2alpha
+kind: Workflow
+id: 71575d40-779b-405d-9ba7-49023f521985
+name: Test Publish
+trigger:
+  onDemandTrigger:
+    parameterList:
+      parameters: []
+playbook:
+  steps:
+    - exit:
+        success: "true"
+        pretty_name: Exit
+        output: '{}'
+        uuid: df4a01d7-b63f-4a52-ae58-cff3724bb591
+        use_schema: true
+  output_schema: '{}'
+root: true
