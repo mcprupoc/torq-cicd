@@ -9,11 +9,41 @@ trigger:
       parameters: []
 playbook:
   steps:
+    - name: us-docker.pkg.dev/stackpulse/public/virustotal/get-api-usage:2.2.0
+      id: get_api_usage
+      envFrom:
+        integrationRef: ""
+      uuid: a5903028-0f58-4ba6-9e91-1a767c44e14c
+      pretty_name: Get API Usage
+      options:
+        executor:
+          name: http_request_v_4_30_0
+          env:
+            AUTHORIZATION: None
+            BODY: ""
+            HEADERS: |-
+              {
+                "x-apikey": "{{ .VT_API_KEY | jsonEscape }}"
+              }
+            METHOD: GET
+            PARSE_HJSON: "true"
+            REQUIRED_VARIABLES: '["VT_API_KEY"]'
+            TIMEOUT: "30"
+            URL: '{{ .BASE_URL | default "https://www.virustotal.com/api/v3" }}/users/{{ .VT_API_KEY | urlEnc }}/api_usage'
+          sync: true
+          disable: false
+      documentationUrl: https://developers.virustotal.com/reference/user-api-usage
+      manifestId: 2494ec0c-f816-52e1-8115-757e35c0a021
+      isPrivate: false
+      isPrivateUrl: true
+      mock_output:
+        enabled: false
+      skip: false
+      retry: {}
     - exit:
         success: "true"
         pretty_name: Exit
         output: '{}'
         uuid: df4a01d7-b63f-4a52-ae58-cff3724bb591
-        use_schema: true
   output_schema: '{}'
 root: true
