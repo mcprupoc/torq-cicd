@@ -40,6 +40,41 @@ playbook:
         enabled: false
       skip: false
       retry: {}
+    - name: us-docker.pkg.dev/stackpulse/public/torq/create-a-workspace-variable:2.1.0
+      id: create_a_workspace_variable
+      env:
+        DATA_TYPE: string
+        VALUE_STRING: ""
+        VARIABLE_PRETTY_NAME: ""
+      envFrom:
+        integrationRef: ""
+      uuid: 0eadee8d-67a7-466c-9a7a-e5014b7ce91f
+      pretty_name: Create a workspace variable
+      options:
+        executor:
+          name: http_request_v_4_21_0
+          env: {}
+          sync: true
+          disable: false
+      documentationUrl: https://learn.torq.io/v1/docs/workspace-variables
+      manifestId: a1f13908-749d-5744-b974-b1238ea1e21b
+      isPrivate: false
+      isPrivateUrl: true
+      mock_output:
+        enabled: false
+      skip: false
+      retry: {}
+    - if:
+        conditions:
+          or:
+            - and:
+                - lvalue: ""
+                  operator: EQUALS
+                  rvalue: ""
+        then: []
+        else: []
+        uuid: d4448441-8039-4664-a69e-8fc6f973a5e5
+        pretty_name: If
     - exit:
         success: "true"
         pretty_name: Exit
